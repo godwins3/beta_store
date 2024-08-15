@@ -1,0 +1,13 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+    <div class="mainbox">
+        <div class="center">
+     <strong><h2>4<i class="far fa-question-circle fa-spin"></i>4</h2></strong>
+        <h3>Oops! Page not found</h3>
+        </div>
+            <div class="msg">Maybe this page moved? Got deleted?  Never existed in the first place?
+                <p>Let's go <a href="#">home</a> and try from there, or you can just <a href="{% url 'contact' %}">Contact us.</a></p></p></div>
+        </div>
+
+{% endblock  %}

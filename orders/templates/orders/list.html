@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Orders List
+{% endblock %}
+{% block content %}
+<h4>Orders</h4>
+<hr>
+<p> 
+<h7><a href="{% url 'orders:my_orders'  %}">OPEN ORDERS</a></h7>&nbsp;&nbsp;&nbsp;  
+<h7><a href="{% url 'orders:cancelled_orders'  %}">CLOSED ORDERS</a></h7>
+</p>
+<hr>
+{% for object in object_list %}
+<hr>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">Order:  {{ object.order_number }} </h5>
+    <hr>
+    <h6 class="card-subtitle mb-2 text-muted">Order placed on: {{ object.created }}</h6>
+    <p class="card-text">
+      <strong>Shipping Address:</strong> {{ object.address }}<br>
+      <strong>Order total:</strong> KSH {{ object.get_total_cost }}<br>
+      {{ object.order_status }}
+      <h6 class="card-subtitle mb-2 text-muted">On: {{ object.updated }}</h6>
+    </p>
+    <strong><a href="{% url 'orders:order_detail' object.id %}" class="card-link">VIEW DETAILS</a></strong> 
+  </div>
+
+</div>
+{% empty %}
+<br>
+<p>You Dont have any Orders Yet. 
+    <a href="{% url "shop:product_list" %}" class="button
+    light">Continue shopping</a></p>
+{% endfor %}
+<br>
+{% include "shop/product/recommended.html" %}
+<br>
+{%include "shop/product/recently_viewed.html" %}
+{% endblock %}
+
+
